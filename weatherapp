@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Weather App (Fake Data)</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: white;
+      text-align: center;
+    }
+
+    .container {
+      margin-top: 100px;
+      padding: 30px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      width: 90%;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    }
+
+    input {
+      padding: 10px;
+      width: 70%;
+      border: none;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+
+    button {
+      padding: 10px 15px;
+      background-color: #00bfff;
+      border: none;
+      border-radius: 5px;
+      color: #001f3f;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .weather-info {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+
+    .weather-info h2 {
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🌦️ Weather App</h1>
+    <input type="text" id="cityInput" placeholder="Enter city name" />
+    <button onclick="getWeather()">Get Weather</button>
+
+    <div class="weather-info" id="weatherInfo"></div>
+  </div>
+
+  <script>
+    // Fake weather data for demo
+    const fakeWeatherData = {
+      mumbai: {
+        city: "Mumbai",
+        country: "India",
+        temperature: 32,
+        description: "Sunny",
+        humidity: 58,
+        wind: 3.4,
+      },
+      delhi: {
+        city: "Delhi",
+        country: "India",
+        temperature: 35,
+        description: "Partly Cloudy",
+        humidity: 45,
+        wind: 4.2,
+      },
+      london: {
+        city: "London",
+        country: "UK",
+        temperature: 18,
+        description: "Rainy",
+        humidity: 72,
+        wind: 5.1,
+      },
+    };
+
+    function getWeather() {
+      const cityInput = document.getElementById('cityInput').value.trim().toLowerCase();
+      const weatherInfo = document.getElementById('weatherInfo');
+
+      if (fakeWeatherData[cityInput]) {
+        const data = fakeWeatherData[cityInput];
+        weatherInfo.innerHTML = `
+          <h2>${data.city}, ${data.country}</h2>
+          <p>🌤️ ${data.description}</p>
+          <p>🌡️ Temperature: ${data.temperature}°C</p>
+          <p>💧 Humidity: ${data.humidity}%</p>
+          <p>🌬️ Wind Speed: ${data.wind} m/s</p>
+        `;
+      } else {
+        weatherInfo.innerHTML = `<p>Weather data not found for "${cityInput}". Try: Mumbai, Delhi, or London.</p>`;
+      }
+    }
+  </script>
+</body>
+</html>
